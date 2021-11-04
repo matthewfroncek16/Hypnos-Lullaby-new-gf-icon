@@ -108,7 +108,7 @@
 	"image": "characters/Missingno",
 	"position": [
 		70,
-		140
+		280
 	],
 	"healthicon": "missingno",
 	"flip_x": false,
@@ -119,7 +119,7 @@
 	],
 	"camera_position": [
 		-480,
-		-190
+		-285
 	],
 	"sing_duration": 4,
 	"scale": 7.00000000000001
