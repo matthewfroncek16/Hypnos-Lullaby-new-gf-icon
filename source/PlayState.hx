@@ -3165,9 +3165,11 @@ class PlayState extends MusicBeatState
 	}
 
 	public function switchState(stateTo:FlxState) {
+		/* for a future update :P
 		if (endingSong && ClientPrefs.hellMode && (Paths.formatToSongPath(SONG.song) == "left-unchecked") && FlxG.save.data.hasUnlockedFuck == null) {
 			MusicBeatState.switchState(new HellState(stateTo));
 		} else
+		*/
 			MusicBeatState.switchState(stateTo);
 	}
 
