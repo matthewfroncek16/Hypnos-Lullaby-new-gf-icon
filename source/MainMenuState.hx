@@ -59,6 +59,7 @@ class MainMenuState extends MusicBeatState
 		// generate key sequence dynamically
 		keySequenceDone = PreloadState.unlockedSongs[1];
 		FlxG.mouse.visible = keySequenceDone;
+		
 		keySequence = [];
 		for (i in 0...3) {
 			for (i in 0...2)

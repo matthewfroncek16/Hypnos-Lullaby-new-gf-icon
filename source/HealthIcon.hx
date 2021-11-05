@@ -85,7 +85,12 @@ class HealthIcon extends FlxSprite
 					updateHitbox();
 			}
 			this.char = char;
+
 			updateHitbox();
+			if (char == 'gold') {
+				setGraphicSize(Std.int(width * 0.8));
+				updateHitbox();
+			}
 			initialWidth = width;
 			initialHeight = height;
 		

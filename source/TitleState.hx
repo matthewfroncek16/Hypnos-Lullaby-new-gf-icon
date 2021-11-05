@@ -192,7 +192,7 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
-		if (sys.FileSystem.exists(Paths.image('StartScreen Hypno'))) {
+		if (!FlxG.save.data.notFirstTime) {
 			hypnoDance = new FlxSprite(FlxG.width * 0.6, -200);
 			hypnoDance.frames = Paths.getSparrowAtlas('StartScreen Hypno');
 			hypnoDance.animation.addByPrefix('bop', 'Hypno StartScreen', 24, true);
@@ -217,7 +217,7 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		if (sys.FileSystem.exists(Paths.image('StartscreenGF'))) {
+		if (!FlxG.save.data.notFirstTime) {
 			gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.45);
 			gfDance.frames = Paths.getSparrowAtlas('StartscreenGF');
 			gfDance.animation.addByPrefix('bop', 'GF Startscreen', 24, true);
@@ -335,11 +335,9 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					if (sys.FileSystem.exists(Paths.image('StartscreenGF'))) {
-						sys.FileSystem.deleteFile(Paths.image('StartscreenGF'));
-					}
-					if (sys.FileSystem.exists(Paths.image('StartScreen Hypno'))) {
-						sys.FileSystem.deleteFile(Paths.image('StartScreen Hypno'));
+					if (FlxG.save.data.notFirstTime == null || FlxG.save.data.notFirstTime == false) {
+						FlxG.save.data.notFirstTime = true;
+						FlxG.save.flush();
 					}
 					
 					if (mustUpdate) {
