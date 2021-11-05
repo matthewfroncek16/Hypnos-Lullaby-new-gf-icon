@@ -770,7 +770,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 	public function new()
 	{
 		super();
-		if (!FlxG.save.data.fuckUnlocked)
+		if (!FlxG.save.data.hasUnlockedFuck)
 			options.remove('Fuck You');
 		// avoids lagspikes while scrolling through menus!
 		showCharacter = new Character(840, 170, 'bf', true);
@@ -946,12 +946,18 @@ class PreferencesSubstate extends MusicBeatSubstate
 					case 'Hide Song Length':
 						ClientPrefs.hideTime = !ClientPrefs.hideTime;
 
+					case 'Fuck You':
+						ClientPrefs.fuckMode = !ClientPrefs.fuckMode;
+						ClientPrefs.pussyMode = false;
+						ClientPrefs.hellMode = false;
 					case 'Hell Mode':
 						ClientPrefs.hellMode = !ClientPrefs.hellMode;
 						ClientPrefs.pussyMode = false;
+						ClientPrefs.fuckMode = false;
 					case 'Pussy Mode':
 						ClientPrefs.pussyMode = !ClientPrefs.pussyMode;
 						ClientPrefs.hellMode = false;
+						ClientPrefs.fuckMode = false;
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				reloadValues();
@@ -1123,6 +1129,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.imagesPersist;
 					case 'Hide Song Length':
 						daValue = ClientPrefs.hideTime;
+					case 'Fuck You':
+						daValue = ClientPrefs.fuckMode;
 					case 'Hell Mode':
 						daValue = ClientPrefs.hellMode;
 					case 'Pussy Mode':

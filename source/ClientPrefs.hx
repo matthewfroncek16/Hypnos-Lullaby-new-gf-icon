@@ -22,6 +22,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
+	public static var fuckMode:Bool = false;
 	public static var photosensitive:Bool = false;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
@@ -67,6 +68,7 @@ class ClientPrefs {
 		FlxG.save.data.framerate = framerate;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
+		FlxG.save.data.fuckMode = fuckMode;
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
@@ -109,6 +111,8 @@ class ClientPrefs {
 		if(FlxG.save.data.flashing != null) {
 			flashing = FlxG.save.data.flashing;
 		}
+		if (FlxG.save.data.fuckMode != null)
+			fuckMode = FlxG.save.data.fuckMode;
 		if (FlxG.save.data.photosensitive != null) {
 			photosensitive = FlxG.save.data.photosensitive;
 		}
