@@ -45,6 +45,8 @@ class MainMenuState extends MusicBeatState
 	var keySequenceProgress:Int = 0;
 	var keySequenceDone:Bool = false;
 
+	var displayList:Array<Bool> = [true, true, true, true];
+	var myHugeNuts:FlxSprite;
 	override function create()
 	{
 		#if desktop
@@ -152,28 +154,51 @@ class MainMenuState extends MusicBeatState
 		difficultySelectors.add(rightArrow);
 
 		//30 75
-		var displayList:Array<Bool> = [true, true];
+	
 		if (displayList[0]) {
-			var starSprite:FlxSprite = new FlxSprite();
+			var starSprite:FlxSprite = new FlxSprite(30, 33);
 			starSprite.frames = Paths.getSparrowAtlas('Stars');
 			starSprite.animation.addByPrefix('Star', 'Star', 24, true);
 			starSprite.animation.play('Star');
 			starSprite.updateHitbox();
-			starSprite.screenCenter(X);
-			starSprite.y = FlxG.height - starSprite.height;
-			starSprite.x -= starSprite.width;
+			//starSprite.screenCenter(X);
+			//starSprite.y = FlxG.height - starSprite.height;
+			//starSprite.x -= starSprite.width;
 			add(starSprite);
 		}
 		if (displayList[1]) {
-			var starSprite:FlxSprite = new FlxSprite();
+			var starSprite:FlxSprite = new FlxSprite(163, 33);
 			starSprite.frames = Paths.getSparrowAtlas('Stars');
-			starSprite.animation.addByPrefix('Star', 'Hellstar', 24, true);
+			starSprite.animation.addByPrefix('Star', 'Star', 24, true);
 			starSprite.animation.play('Star');
 			starSprite.updateHitbox();
-			starSprite.screenCenter(X);
-			starSprite.y = FlxG.height - starSprite.height;
-			starSprite.x += starSprite.width;
+			starSprite.color = FlxColor.RED;
+			//starSprite.screenCenter(X);
+			//starSprite.y = FlxG.height - starSprite.height;
+			//starSprite.x -= starSprite.width;
 			add(starSprite);
+		}
+		if (displayList[2]) {
+			var starSprite:FlxSprite = new FlxSprite(30, 500);
+			starSprite.frames = Paths.getSparrowAtlas('Stars');
+			starSprite.animation.addByPrefix('Star', 'Star', 24, true);
+			starSprite.animation.play('Star');
+			starSprite.updateHitbox();
+			starSprite.color = FlxColor.fromString('0xFFDAA520');
+			//starSprite.screenCenter(X);
+			//starSprite.y = FlxG.height - starSprite.height;
+			//starSprite.x -= starSprite.width;
+			add(starSprite);
+		}
+
+		if (displayList[3]) {
+			myHugeNuts = new FlxSprite(163, 500);
+			myHugeNuts.frames = Paths.getSparrowAtlas('Stars');
+			myHugeNuts.animation.addByPrefix('Star', 'Star', 24, true);
+			myHugeNuts.animation.play('Star');
+			myHugeNuts.updateHitbox();
+			myHugeNuts.color = FlxColor.GREEN;
+			add(myHugeNuts);
 		}
 
 		super.create();
@@ -186,10 +211,15 @@ class MainMenuState extends MusicBeatState
 
 	var lastSelected:Int = 0;
 
+	
 	override function update(elapsed:Float)
 	{
 		// colorTest += 0.125;
 		// bg.color = FlxColor.fromHSB(colorTest, 100, 100, 0.5);
+		if (displayList[3]) {
+			var lol = myHugeNuts.color.hue + 0.2;
+			myHugeNuts.color = FlxColor.fromHSB(lol, 100, 100, 1);
+		}
 		if (controls.UI_RIGHT)
 			rightArrow.animation.play('press')
 		else

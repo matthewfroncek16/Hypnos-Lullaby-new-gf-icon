@@ -62,12 +62,15 @@ class UnownSubState extends MusicBeatSubstate
 		'BOOB LOL',
 		'LMAO GOTTEM',
 		'RATIO',
-		"GOO!"
+		"GOO!",
+		'POGGERS!',
+		'BUSSY'
 	];
 	var zeropointonePercentWords:Array<String> = [
 		'WANNA WORK ON MY FNF MOD?',
 		'IM IN A FUCKING WHEEL CHAIR',
-		'HI SHUBS'
+		'HI SHUBS',
+		'HI ASH'
 	];
 	var hellModeWords:Array<String> = [
 		'SKILL ISSUE',
@@ -76,6 +79,12 @@ class UnownSubState extends MusicBeatSubstate
 		'HES BRI ISH GET HIM',
 		'MAYBE TRY PUSSY MODE',
 		'KEK'
+	];
+
+	var fuckYouWords:Array<String> = [
+		'FUCK YOU',
+		'COPE SEETHE',
+		'VAGINA MOUTH'
 	];
 
 	var missingnoWords:Array<String> = [
