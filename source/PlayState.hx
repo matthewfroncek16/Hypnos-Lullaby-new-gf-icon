@@ -3082,7 +3082,7 @@ class PlayState extends MusicBeatState
 				storyPlaylist.remove(storyPlaylist[0]);
 
 				if ((Paths.formatToSongPath(SONG.song) == "left-unchecked")) {
-					MusicBeatState.switchState(new LostSilverCutscene());
+					switchState(new LostSilverCutscene());
 				} else {
 					if (storyPlaylist.length <= 0)
 						{
@@ -3154,7 +3154,7 @@ class PlayState extends MusicBeatState
 				if(FlxTransitionableState.skipNextTransIn) {
 					CustomFadeTransition.nextCamera = null;
 				}
-				MusicBeatState.switchState(new FreeplayState());
+				switchState(new FreeplayState());
 				FlxG.sound.playMusic(Paths.music('HYPNO_MENU'));
 				usedPractice = false;
 				changedDifficulty = false;
@@ -3162,6 +3162,13 @@ class PlayState extends MusicBeatState
 			}
 			transitioning = true;
 		}
+	}
+
+	public function switchState(stateTo:FlxState) {
+		if (endingSong && ClientPrefs.hellMode && (Paths.formatToSongPath(SONG.song) == "left-unchecked") && FlxG.save.data.hasUnlockedFuck == null) {
+			MusicBeatState.switchState(new HellState(stateTo));
+		} else
+			MusicBeatState.switchState(stateTo);
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
