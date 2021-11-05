@@ -2757,7 +2757,7 @@ class PlayState extends MusicBeatState
 				Lib.application.window.move(FlxG.random.int(0, Std.int(Capabilities.screenResolutionX - FlxG.width)), FlxG.random.int(0, Std.int(Capabilities.screenResolutionY - FlxG.height)));
 				// shubs algorithm lmfao
 				missingnoStarted = true;
-				reverseXY = FlxG.random.bool(50);
+				//reverseXY = FlxG.random.bool(50);
 				var shove:Int;
 				if (!reverseXY)
 					shove = FlxG.random.int(100, Std.int(FlxG.width / 4));
@@ -2783,7 +2783,7 @@ class PlayState extends MusicBeatState
 				}
 
 			} else 
-			//{
+			{
 				// ash algorithm
 				isDownscroll = FlxG.random.bool(50);
 				notes.forEach(function(note:Note){note.downscrollNote = isDownscroll;});
@@ -2804,7 +2804,7 @@ class PlayState extends MusicBeatState
 						playerStrums.members[i].y = FlxG.random.int(Std.int(playerStrums.members[0].y - 50), Std.int(playerStrums.members[0].y + 50));
 					}
 				}
-			//}
+			}
 
 		}
 	}
