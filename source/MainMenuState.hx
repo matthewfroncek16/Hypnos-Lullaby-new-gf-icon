@@ -151,6 +151,30 @@ class MainMenuState extends MusicBeatState
 		rightArrow.antialiasing = ClientPrefs.globalAntialiasing;
 		difficultySelectors.add(rightArrow);
 
+		//30 75
+		var displayList:Array<Bool> = [true, true];
+		if (displayList[0]) {
+			var starSprite:FlxSprite = new FlxSprite();
+			starSprite.frames = Paths.getSparrowAtlas('Stars');
+			starSprite.animation.addByPrefix('Star', 'Star', 24, true);
+			starSprite.animation.play('Star');
+			starSprite.updateHitbox();
+			starSprite.screenCenter(X);
+			starSprite.y = FlxG.height - starSprite.height;
+			starSprite.x -= starSprite.width;
+			add(starSprite);
+		}
+		if (displayList[1]) {
+			var starSprite:FlxSprite = new FlxSprite();
+			starSprite.frames = Paths.getSparrowAtlas('Stars');
+			starSprite.animation.addByPrefix('Star', 'Hellstar', 24, true);
+			starSprite.animation.play('Star');
+			starSprite.updateHitbox();
+			starSprite.screenCenter(X);
+			starSprite.y = FlxG.height - starSprite.height;
+			starSprite.x += starSprite.width;
+			add(starSprite);
+		}
 
 		super.create();
 	}
