@@ -1053,6 +1053,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "If checked, the bar showing how much time is left\nwill be hidden.";
 			case 'Hell Mode':
 				daText = "Makes everything harder.";
+			case 'Fuck You':
+				daText = "Fuck you.";
 			case 'Pussy Mode':
 				daText = "Turns all the mechanics off\nalso certifies you as a pussy";
 		}
