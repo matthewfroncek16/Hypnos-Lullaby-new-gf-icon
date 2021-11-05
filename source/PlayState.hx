@@ -3059,6 +3059,27 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
+		if (!usedPractice) {
+			//trash ass code but its 1 am and I fucked up
+			if (ClientPrefs.hellMode) {
+				if (FlxG.save.data.beatenHell == null)
+					FlxG.save.data.beatenHell = [];
+				if (!FlxG.save.data.beatenHell.contains(SONG.song))
+					FlxG.save.data.beatenHell.push(SONG.song);
+
+				if (FlxG.save.data.beatenHell.length >= 4)
+					FlxG.save.data.hellBeat = true;
+			} else {
+				if (FlxG.save.data.beatenNormal == null)
+					FlxG.save.data.beatenNormal = [];
+				if (!FlxG.save.data.beatenNormal.contains(SONG.song))
+					FlxG.save.data.beatenNormal.push(SONG.song);
+
+				if (FlxG.save.data.beatenNormal.length >= 4)
+					FlxG.save.data.normalBeat = true;
+			}
+			FlxG.save.flush();
+		}
 		
 		#if LUA_ALLOWED
 		var ret:Dynamic = callOnLuas('onEndSong', []);
@@ -3892,7 +3913,7 @@ class PlayState extends MusicBeatState
 		switch (boyfriend.curCharacter) {
 			case 'gf':
 				if (!whiteHandDone) {
-					if (FlxG.random.int(0, 1000) == 5) {
+					if (FlxG.random.int(0, 10000) == 5) {
 						doTheHand();
 						whiteHandDone = true;
 					}

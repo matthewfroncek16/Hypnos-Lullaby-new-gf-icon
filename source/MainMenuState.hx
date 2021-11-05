@@ -45,7 +45,10 @@ class MainMenuState extends MusicBeatState
 	var keySequenceProgress:Int = 0;
 	var keySequenceDone:Bool = false;
 
-	var displayList:Array<Bool> = [true, true, true, true];
+	var displayList:Array<Bool> = [
+		FlxG.save.data.normalBeat, FlxG.save.data.hellBeat, FlxG.save.data.fuckBeat, 
+		(FlxG.save.data.normalBeat && FlxG.save.data.hellBeat &&FlxG.save.data.fuckBeat)
+	];
 	var myHugeNuts:FlxSprite;
 	override function create()
 	{
@@ -190,7 +193,6 @@ class MainMenuState extends MusicBeatState
 			//starSprite.x -= starSprite.width;
 			add(starSprite);
 		}
-
 		if (displayList[3]) {
 			myHugeNuts = new FlxSprite(163, 500);
 			myHugeNuts.frames = Paths.getSparrowAtlas('Stars');
