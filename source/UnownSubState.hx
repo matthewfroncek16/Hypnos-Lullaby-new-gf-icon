@@ -45,8 +45,55 @@ class UnownSubState extends MusicBeatSubstate
 		'HOPELESS',
 		'RUN STREAMER',
 		'NOT WELCOME',
-		'CAN YOU SEE?'
+		'CAN YOU SEE?',
+		'WHERE?',
+		'FERALIGATR',
+		'HELP',
+		'XXXXX',
+		'GOODBYE',
+		'CELEBI DIED',
+		'IT FAILED',
+		'I SEE YOU',
+		'HIPPOPOTAMUS'
 	];
+	var onePercentWords:Array<String> = [
+		'NICE COCK',
+		'SUS AF',
+		'BOOB LOL',
+		'LMAO GOTTEM',
+		'RATIO',
+		"GOO!"
+	];
+	var zeropointonePercentWords:Array<String> = [
+		'WANNA WORK ON MY FNF MOD?',
+		'IM IN A FUCKING WHEEL CHAIR',
+		'HI SHUBS'
+	];
+	var hellModeWords:Array<String> = [
+		'SKILL ISSUE',
+		'WELCOME TO HELL',
+		'WORK THAT PENDULUM',
+		'HES BRI ISH GET HIM',
+		'MAYBE TRY PUSSY MODE',
+		'KEK'
+	];
+
+	var missingnoWords:Array<String> = [
+		'MISSINGNO',
+		'BIRD',
+		'??????????',
+		'aerodactyl',
+		'golduck',
+		'cubone',
+		'Kabutops',
+		'glitch',
+		'?',
+		'pay day',
+		'bind',
+		'ghost',
+		'henry'
+	];
+
 	var lines:FlxTypedGroup<FlxSprite>;
 	var unowns:FlxTypedSpriteGroup<FlxSprite>;
 	public var win:Void->Void = null;
@@ -55,33 +102,34 @@ class UnownSubState extends MusicBeatSubstate
 	var timerTxt:FlxText;
 	public function new(theTimer:Int = 15, word:String = '')
 	{
-		if (ClientPrefs.hellMode)
-			words.push('SKILL ISSUE');
 		timer = theTimer;
 		super();
 		var overlay:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.RED);
 		overlay.alpha = 0.4;
 		add(overlay);
-		selectedWord = words[FlxG.random.int(0, words.length - 1)];
-		switch (FlxG.random.int(0, 100)) {
-			case 50:
-				selectedWord = 'NICE COCK';
-			case 51:
-				selectedWord = 'SUS AF';
-			case 52:
-				selectedWord = 'BOOB LOL';
-			case 53:
-				selectedWord = 'WANNA WORK ON MY FNF MOD?';
-			case 54:
-				selectedWord = 'LMAO GOTTEM';
-			case 55:
-				selectedWord = 'RATIO';
+
+		if (ClientPrefs.hellMode) {
+			for (i in hellModeWords)
+				words.push(i);
 		}
+
+		if (PlayState.SONG.song.toLowerCase() == 'missingno')
+			words = missingnoWords;
+
+		if (FlxG.random.int(0, 100) == 50)
+			words = onePercentWords;
+
+		if (FlxG.random.int(0, 1000) == 50)
+			words = zeropointonePercentWords;
+		
+		selectedWord = words[FlxG.random.int(0, words.length - 1)];
+		
 		if (word != '')
 			selectedWord = word;
 		//i forgor if there's a function to do this
 		selectedWord = selectedWord.toUpperCase();
 		var splitWord = selectedWord.split(' ');
+		
 		var dum:Bool = false;
 		for (i in splitWord) {
 			realWord += i;

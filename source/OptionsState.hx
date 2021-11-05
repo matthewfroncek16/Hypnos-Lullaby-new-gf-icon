@@ -741,6 +741,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Framerate', //Apparently 120FPS isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		#end
 		'MODES',
+		'Fuck You',
 		'Hell Mode',
 		'Pussy Mode',
 		'GAMEPLAY',
@@ -769,6 +770,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 	public function new()
 	{
 		super();
+		if (!FlxG.save.data.fuckUnlocked)
+			options.remove('Fuck You');
 		// avoids lagspikes while scrolling through menus!
 		showCharacter = new Character(840, 170, 'bf', true);
 		showCharacter.setGraphicSize(Std.int(showCharacter.width * 0.8));

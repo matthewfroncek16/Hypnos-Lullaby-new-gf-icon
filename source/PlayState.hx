@@ -33,6 +33,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
+import flash.system.Capabilities;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
@@ -46,6 +47,7 @@ import openfl.utils.Assets as OpenFlAssets;
 import editors.ChartingState;
 import editors.CharacterEditorState;
 import flixel.group.FlxSpriteGroup;
+import openfl.Lib;
 import Achievements;
 import StageData;
 import FunkinLua;
@@ -159,7 +161,7 @@ class PlayState extends MusicBeatState
 	public static var changedDifficulty:Bool = false;
 	public static var cpuControlled:Bool = false;
 
-	
+	var missingnoOcean:FlxSprite;
 
 	var botplaySine:Float = 0;
 	var botplayTxt:FlxText;
@@ -418,14 +420,14 @@ class PlayState extends MusicBeatState
 				background.scrollFactor.set(0.3, 0.3);
 				add(background);
 
-				var ocean:FlxSprite = new FlxSprite(consistentPosition[0], consistentPosition[1]);
-				ocean.frames = Paths.getSparrowAtlas('missingno/BG_Assets', 'shared');
-				ocean.animation.addByPrefix('idle', 'Bg Ocean', 24, true);
-				ocean.animation.play('idle');
-				ocean.scale.set(resizeBG, resizeBG);
-				ocean.updateHitbox();
-				ocean.scrollFactor.set(0.4, 0.4);
-				add(ocean);
+				missingnoOcean = new FlxSprite(consistentPosition[0], consistentPosition[1]);
+				missingnoOcean.frames = Paths.getSparrowAtlas('missingno/BG_Assets', 'shared');
+				missingnoOcean.animation.addByPrefix('idle', 'Bg Ocean', 24, true);
+				missingnoOcean.animation.play('idle');
+				missingnoOcean.scale.set(resizeBG, resizeBG);
+				missingnoOcean.updateHitbox();
+				missingnoOcean.scrollFactor.set(0.4, 0.4);
+				add(missingnoOcean);
 
 				var ground:FlxSprite = new FlxSprite(consistentPosition[0], consistentPosition[1]);
 				ground.frames = Paths.getSparrowAtlas('missingno/BG_Assets', 'shared');
@@ -2707,6 +2709,8 @@ class PlayState extends MusicBeatState
 	function missingnoThing() {
 		if (!ClientPrefs.pussyMode) {
 			if (ClientPrefs.hellMode) {
+				FlxG.fullscreen = false;
+				Lib.application.window.move(FlxG.random.int(0, Std.int(Capabilities.screenResolutionX - FlxG.width)), FlxG.random.int(0, Std.int(Capabilities.screenResolutionY - FlxG.height)));
 				// shubs algorithm lmfao
 				missingnoStarted = true;
 				reverseXY = FlxG.random.bool(50);
@@ -2901,7 +2905,6 @@ class PlayState extends MusicBeatState
 				camFollow.x += dad.cameraPosition[0];
 				camFollow.y += dad.cameraPosition[1];
 				tweenCamIn();
-
 			} else {
 				camFollow.set(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
 	
@@ -3906,9 +3909,18 @@ class PlayState extends MusicBeatState
 						}
 					case 64:
 						defaultCamZoom = 0.8;
-					case 192:
+					case 192 | 96 | 128 | 176 | 224 | 416 | 464 | 496:
 						if (ClientPrefs.hellMode)
-							startUnown(16, 'missingno');
+							startUnown(16);
+					case 264:
+						if (ClientPrefs.hellMode)
+							startUnown(8);
+					case 320:
+						if (ClientPrefs.hellMode)
+							startUnown(32, '?????????????????????????????????????????????????????????????????????????????????????????');
+					case 56:
+						if (ClientPrefs.hellMode)
+							startUnown(8, 'missingno');
 				}
 			case 'monochrome':
 				switch (curBeat) {
@@ -3933,13 +3945,13 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(i, {alpha: 0}, 1, {ease: FlxEase.linear});
 						}
 					case 224:
-						if (ClientPrefs.hellMode)
+						/*if (ClientPrefs.hellMode)
 							startUnown(16, 'abcdefghijklmnopqrstuvwxyz');
 						else
-							startUnown(8);
+							startUnown(8);*/
 					case 232:
-						if (!ClientPrefs.hellMode)
-							startUnown(8);
+						/*if (!ClientPrefs.hellMode)
+							startUnown(8);*/
 				}
 		}
 		if(lastBeatHit >= curBeat) {

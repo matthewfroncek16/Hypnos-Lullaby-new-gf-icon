@@ -100,6 +100,8 @@ class PreloadState extends FlxState {
                 unlockedSongs[0] = FlxG.save.data.silverUnlock;
             if (FlxG.save.data.missingnoUnlock != null)
                 unlockedSongs[1] = FlxG.save.data.missingnoUnlock;
+            if (FlxG.save.data.fuckUnlocked == null)
+                FlxG.save.data.fuckUnlocked = false;
         }
 
         loadText = new FlxText(5, FlxG.height - (32 + 5), 0, 'Loading...', 32);
