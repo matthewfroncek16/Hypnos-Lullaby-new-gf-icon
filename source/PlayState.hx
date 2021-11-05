@@ -2748,8 +2748,10 @@ class PlayState extends MusicBeatState
 	final bullshitArray:Array<Int> = [-2, -1, 1, 2];
 
 	function missingnoThing() {
+		for (i in opponentStrums)
+			i.alpha = 0;
 		if (!ClientPrefs.pussyMode) {
-			/*
+			
 			if (ClientPrefs.hellMode) {
 				FlxG.fullscreen = false;
 				Lib.application.window.move(FlxG.random.int(0, Std.int(Capabilities.screenResolutionX - FlxG.width)), FlxG.random.int(0, Std.int(Capabilities.screenResolutionY - FlxG.height)));
@@ -2780,7 +2782,7 @@ class PlayState extends MusicBeatState
 						);
 				}
 
-			} else */
+			} else 
 			//{
 				// ash algorithm
 				isDownscroll = FlxG.random.bool(50);
@@ -3165,7 +3167,7 @@ class PlayState extends MusicBeatState
 	}
 
 	public function switchState(stateTo:FlxState) {
-		if (endingSong && ClientPrefs.hellMode && (Paths.formatToSongPath(SONG.song) == "left-unchecked") && FlxG.save.data.hasUnlockedFuck == null) {
+		if (endingSong && ClientPrefs.hellMode && (Paths.formatToSongPath(SONG.song) == "left-unchecked") && FlxG.save.data.hasUnlockedFuck == false) {
 			MusicBeatState.switchState(new HellState(stateTo));
 		} else
 			MusicBeatState.switchState(stateTo);
@@ -3924,7 +3926,8 @@ class PlayState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-
+		if (ClientPrefs.fuckMode && curBeat % 16 == 0)
+			missingnoThing();
 		if (tranceActive) {
 			if (!pendulum.daTween.active) {
 				if (SONG.player2 == 'hypno')
